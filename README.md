@@ -1,5 +1,9 @@
 ---
-title: An Lol Analysis
+layout: page
+title: "📊 Final Project"
+description: Description of Final Project.
+nav_exclude: false
+nav_order: 7
 ---
 
 # An LoL Analysis
