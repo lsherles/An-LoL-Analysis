@@ -1,0 +1,5 @@
+remote_theme: pages-themes/slate@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
+title: An Analysis of the Top Competitive League in LoL
+description: This is a project for DSC 80 at UCSD, where I will take a look at the top competitive leagues in League of Legends and conduct specific analysis and predictions.
