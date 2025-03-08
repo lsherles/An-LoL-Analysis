@@ -20,7 +20,21 @@ by Lucas Sherles
 
 ---
 
-## Hypothesis Testing
+## Framing a Prediction Problem
+
+
+---
+## Baseline Model
+
+
+---
+
+## Final Model
+
+
+---
+
+## Fairness Analysis
 
 
 ---
