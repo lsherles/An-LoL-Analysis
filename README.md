@@ -34,7 +34,6 @@ print(pickban_df.head(5).to_markdown(index=False))
 | Nautilus    |        967.0 |
 
 
-
 <iframe
   src="assets/valcounts.html"
   width="800"
@@ -43,7 +42,20 @@ print(pickban_df.head(5).to_markdown(index=False))
 ></iframe>
 As we can see, the champion that is picked or banned the most is Ashe. Let's explore Ashe's effect on how teams perform by seeing if teams experience more or less success when they pick or ban Ashe.
 
-To explore Ashe's effect on how teams perform, we start by filtering the original dataframe for when '_champion_' is equal to 'Ashe', and then simply find the mean of the '_result_' column. To find the win rate for teams who banned, we just need to filter the previous dataframe that we melted to contain games where Ashe was banned, and then take the mean of '_result_'. 
+To explore Ashe's effect on how teams perform, we start by filtering the original dataframe for when '_champion_' is equal to Ashe, and then simply find the mean of the '_result_' column. To find the win rate for teams who banned, we just need to filter the previous dataframe that we melted to contain games where Ashe was banned, and then take the mean of '_result_'. 
+
+```py
+print(ashe_df.head(5).to_markdown(index=(False)))
+```
+
+|gameid	            |teamname	            |league	|result	|champion	|status	|ban_slot|
+|:------------------|-----------------------|-------|-------|-----------|-------|-------:|
+|10665-10665_game_1	|Bilibili Gaming	    |LPL	|1	    |Ashe	    |Picked	|NaN     |
+|10665-10665_game_2	|Bilibili Gaming	    |LPL	|0	    |Ashe	    |Banned	|ban2    |
+|10665-10665_game_3	|Top Esports	        |LPL	|0	    |Ashe	    |Banned	|ban2    |
+|10666-10666_game_1	|Royal Never Give Up	|LPL	|0	    |Ashe	    |Banned	|ban3    |
+|10666-10666_game_2	|Royal Never Give Up	|LPL	|1	    |Ashe	    |Banned	|ban1    |
+
 
 <iframe
   src="assets/ashe_wr_bc.html"
