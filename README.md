@@ -43,9 +43,14 @@ print(pickban_df.head(5).to_markdown(index=False))
 ></iframe>
 
 
-Then, by after melting the different ban slots into one column, we can further clean the data and examine the win rates when teams ban _Ashe_, and compare with when teams pick her. 
+We can further clean the data and examine the win rates when teams ban _Ashe_, and compare with when teams pick her. We do this by filtering the original dataframe for when _'champion'_ is equal to _'Ashe'_, and then simply find the mean of the 'result' column. To find the win rate for teams who banned, we just need to filter the previous dataframe that we melted to contain games where Ashe was banned, and then take the mean of 'result'. 
 
-**Embed bar graph of Ashe pick vs Ashe ban**
+<iframe
+  src="assets/ashe_wr_bc.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 Interestingly enough, teams that ban _Ashe_ not only lose more often than they win, but they also lose staggeringly more than teams who pick _Ashe_, who do very well.
 
