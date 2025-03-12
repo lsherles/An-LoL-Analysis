@@ -8,8 +8,10 @@ by Lucas Sherles
 ### Introduction
 
 In competitive League of Legends, the part of the game that is make or break is the draft. This is where each team selects and bans 5 champions, going in a snake order. The goal is to pick champions that are strong and synergize well with each other, while also banning champions that are strong against your own.
+
 This project focuses on the the tier 1 leagues (LCK, LEC, LCS, LPL), which are the highest level of League of Legends anywhere around the world, and explores how the draft phase affects the outcome of each game. 
-In the first few parts of this project, we will look at at the most picked and banned champions, and how they affect the win rate of the teams that pick or ban them. Later on, wewill look at how the champions picked in the draft can predict which team obtains the first dragon in the game.
+
+In the first few parts of this project, we will look at at the most picked and banned champions, and how they affect the win rate of the teams that pick or ban them. Later on, we will look at how the champions picked in the draft can predict which team obtains the first dragon in the game.
 
 ---
 
@@ -17,7 +19,7 @@ In the first few parts of this project, we will look at at the most picked and b
 
 The first step of the cleaning part of this process was to query the dataset for only the top domestic leagues, not including international events. In the data, each entry is assigned to a specific player. Since we aren't interested in player-specific statistics, we can group the data by _gameid_ and _teamname_. This gives us the team statistics for each game, and includes entries for both teams. Specifically, let's figure out which champions were picked or banned the most times. 
 
-Since there are 5 ban slots, each of which have their own column, we need to melt these columns into one column. We can do this by using _groupby_, and since we aren't interested in player-specific statistics, we can group the data by _gameid_ and _teamname_ and keep the relevant columns. Then, we can get the value counts to see which champions were banned the most, and when we combine this with the vakue counts of the 'champion' column in the original dataset, we can plot the results.
+Since there are 5 ban slots, each of which have their own column, we need to melt these columns into one column. We can do this by using _groupby_, and since we aren't interested in player-specific statistics, we can group the data by _gameid_ and _teamname_ and keep the relevant columns. Then, we can get the value counts to see which champions were banned the most, and when we combine this with the value counts of the 'champion' column in the original dataset, we can plot the results.
 
 ```py
 print(pickban_df.head(5).to_markdown(index=False))
@@ -33,7 +35,13 @@ print(pickban_df.head(5).to_markdown(index=False))
 
 
 
-**Embed a bar graph of top 10 value counts and head of merged df here**
+<iframe
+  src="assets/valcounts.html.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 
 Then, by after melting the different ban slots into one column, we can further clean the data and examine the win rates when teams ban _Ashe_, and compare with when teams pick her. 
 
