@@ -36,7 +36,7 @@ print(pickban_df.head(5).to_markdown(index=False))
 
 
 <iframe
-  src="assets/valcounts.html.html"
+  src="assets/valcounts.html"
   width="800"
   height="600"
   frameborder="0"
