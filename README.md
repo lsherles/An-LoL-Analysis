@@ -41,9 +41,9 @@ print(pickban_df.head(5).to_markdown(index=False))
   height="600"
   frameborder="0"
 ></iframe>
+As we can see, the champion that is picked or banned the most is Ashe. Let's explore Ashe's effect on how teams perform by seeing if teams experience more or less success when they pick or ban Ashe.
 
-
-We can further clean the data and examine the win rates when teams ban _Ashe_, and compare with when teams pick her. We do this by filtering the original dataframe for when _'champion'_ is equal to _'Ashe'_, and then simply find the mean of the 'result' column. To find the win rate for teams who banned, we just need to filter the previous dataframe that we melted to contain games where Ashe was banned, and then take the mean of 'result'. 
+To explore Ashe's effect on how teams perform, we start by filtering the original dataframe for when '_champion_' is equal to 'Ashe', and then simply find the mean of the '_result_' column. To find the win rate for teams who banned, we just need to filter the previous dataframe that we melted to contain games where Ashe was banned, and then take the mean of '_result_'. 
 
 <iframe
   src="assets/ashe_wr_bc.html"
@@ -51,8 +51,7 @@ We can further clean the data and examine the win rates when teams ban _Ashe_, a
   height="600"
   frameborder="0"
 ></iframe>
-
-Interestingly enough, teams that ban _Ashe_ not only lose more often than they win, but they also lose staggeringly more than teams who pick _Ashe_, who do very well.
+Interestingly enough, teams that ban Ashe not only lose more often than they win, but they also lose staggeringly more than teams who pick Ashe, who do very well.
 
 ---
 
