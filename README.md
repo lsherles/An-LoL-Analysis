@@ -42,7 +42,7 @@ print(pickban_df.head(5).to_markdown(index=False))
 ></iframe>
 As we can see, the champion that is picked or banned the most is Ashe. Let's explore Ashe's effect on how teams perform by seeing if teams experience more or less success when they pick or ban Ashe.
 
-To explore Ashe's effect on how teams perform, we start by filtering the original dataframe for when '_champion_' is equal to Ashe, and then simply find the mean of the '_result_' column. To find the win rate for teams who banned, we just need to filter the previous dataframe that we melted to contain games where Ashe was banned, and then take the mean of '_result_'. 
+To explore Ashe's effect on how teams perform, we start by filtering the original dataframe for when '_champion_' is equal to Ashe, and then simply find the mean of the '_result_' column. To find the win rate for teams who banned, we just need to filter the previous dataframe that we melted to contain games where Ashe was banned, and then take the mean of '_result_'. We can then combine these dataframes to create one larger dataframed, '_gameid_' and '_teamname_', that contains a new column, '_status_', dictating whether Ashe was picked or banned by the specific team in the game. Games where Ashe was picked will, as a result, have a value of NaN under the '_ban slot_' column.  
 
 ```py
 print(ashe_df.head(5).to_markdown(index=(False)))
@@ -68,6 +68,35 @@ Interestingly enough, teams that ban Ashe not only lose more often than they win
 ---
 
 ### Assessment of Missingness
+
+
+---
+
+### Hypothesis Testing
+
+We will use hypothesis testing to see if the difference in win rates between teams who ban Ashe versus teams who pick Ashe is significant. Based on the previous graph comparing win rates for when Ashe is picked or banned, we can outline our test is outlined as follows:
+- Null: The win rate of teams that pick Ashe is the same as the win rate of teams that ban Ashe.
+- Alternative: The win rate of teams that pick Ashe is higher than the win rate of teams that ban Ashe.
+- Significance Level: 0.05 or 5%
+
+To test whether the difference is singificant, we can use z-score to measure the standardized difference between the two. If our z-score is large, then we find that picking Ashe leads to a win a signficantly higher amount than banning Ashe. After calculating the total win rate and standard error, we can take the differences in individual win rates and divide by the SE to find the z-score. We can further use _norm.cdf_ to calculate the p-value as well.
+
+```py
+# Compute Z-score
+z_score = (ashe_pick_wr - ashe_ban_wr) / SE
+
+# Compute one-tailed p-value (right-tailed test)
+p_value = 1 - norm.cdf(z_score)
+
+print(f"Z-score: {z_score:.4f}")
+print(f"P-value: {p_value:.4f}")
+```
+Z-score: 1.9584
+P-value: 0.0251
+
+
+
+
 
 
 ---
