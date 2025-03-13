@@ -94,19 +94,26 @@ print(f"P-value: {p_value:.4f}")
 Z-score: 1.9584
 P-value: 0.0251
 
-
-
-
-
+Based on these values and our significance level of 0.05, we recommend that the null hypothesis be rejected in favor of the alternative. This would suggest that picking Ashe gives teams a significantly better chance of winning than banning Ashe does.
 
 ---
 
 ### Framing a Prediction Problem
 
+Having previously explored the effect of champions on win rates, it's time to explore a more in-depth model. Given that there are over 160 championsin League of Legends, some champions "spike" or are stronger at certain points in the game. For example, Kayle is considered to be a very strong champion in later stages of the game, as she gains new forms that are stronger as she reaches higher experience levels. Thus, it would not be a surprise to see games with Kayle being longer games, or teams who pick Kayle getting fewer void grubs. In this model, we will look at how the champions selected by a team in a draft affects whether or not the obtain the first dragon in the game. This will be a binary classification problem where we try to predict the _firstdragon_ column based on the champions picked, assigning a binary target variable that is 1 if we predict the team to get the first dragon, and 0 otherwise. To initialize our model, we will use all of the "pick" columns (labeled _pick1_, _pick2_, etc. up to 5). Since the _firstdragon_ column is perfectly balanced (half of the entries are 1s and the other half are 0s), we will use accuracy as our metric over f1-score. To do this, we will use onehot encoding for the champions that are picked, as well as random forests.
 
 ---
 ### Baseline Model
+As stated previously, we used onehot encoding for the champions picked. All of the pick columns are categorical, having names of champions as the values in these columns. We can use _ColumnTransformer_ to achieve this, and then define the pipeline using the previous onehot encoding as well as a _RandomForest_ in order to bootstrap and analyze the complex patterns that exist in the many combinations of potential champions. Then, we finally train the model, predict it using the test set, and check our accuracy which is as follows:
 
+```py
+# Check accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Model Accuracy: {accuracy:.4f}")
+```
+Model Accuracy: 0.5541
+
+In order for the model to be better than if we were to just predict a 1 for every entry of _firstdragon_, we would need our accuracy to be better than 0.5 or 50%, since _firstdragon_ is perfectly balanced between 0s and 1s. We find that the model is better than this case, coming in at an accuracy of 55.41%. This would suggest that our model is good, but not great. The champions picked definitely help us to make predictions about whether a team will get the first dragon in a game, but our model is only slightly better than a base case. Let's see if we can improve upon that in our final model.
 
 ---
 
