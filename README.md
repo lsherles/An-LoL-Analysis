@@ -90,9 +90,10 @@ p_value = 1 - norm.cdf(z_score)
 
 print(f"Z-score: {z_score:.4f}")
 print(f"P-value: {p_value:.4f}")
-```
 Z-score: 1.9584
 P-value: 0.0251
+```
+
 
 Based on these values and our significance level of 0.05, we recommend that the null hypothesis be rejected in favor of the alternative. This would suggest that picking Ashe gives teams a significantly better chance of winning than banning Ashe does.
 
@@ -110,8 +111,8 @@ As stated previously, we used onehot encoding for the champions picked. All of t
 # Check accuracy
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Model Accuracy: {accuracy:.4f}")
-```
 Model Accuracy: 0.5541
+```
 
 In order for the model to be better than if we were to just predict a 1 for every entry of _firstdragon_, we would need our accuracy to be better than 0.5 or 50%, since _firstdragon_ is perfectly balanced between 0s and 1s. We find that the model is better than this case, coming in at an accuracy of 55.41%. This would suggest that our model is good, but not great. The champions picked definitely help us to make predictions about whether a team will get the first dragon in a game, but our model is only slightly better than a base case. Let's see if we can improve upon that in our final model.
 
