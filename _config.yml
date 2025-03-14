@@ -4,4 +4,3 @@ plugins:
 layout: page
 title: Is it Possible to Predict How a Top-Tier Competitive League of Legends Match Will Go?
 description: This is a project for DSC 80 at UCSD, where I will take a look at the top competitive leagues in League of Legends and try to make predictions based on feature analysis.
-      - By Lucas Sherles (lsherles@ucsd.edu)
