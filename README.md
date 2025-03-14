@@ -66,16 +66,36 @@ Interestingly enough, teams that ban Ashe not only lose more often than they win
 
 ## Assessment of Missingness
 
-To prepare for the model, we'll explore the missingness of the _firstdragon_ column. The values in this column are missing for all individual player entries and is not missing for some entries pertaining to teams, so we'll filter out entries in the dataset that are related to individual players. This could mean that the data is NMAR and to figure out how the missingness of _firstdragon_ works, we can see if there is any relation to the _league_ column, as some leagues may not track which team gets the first dragon and other tedious data like so. We find that the LPL accounts for all of the missing data in the _firstdragon_ column, and further testing using permutations proves that there is singificant evidence to suggest that the _firstdragon_ column is missing dependent on the league of the entry.
+To prepare for the model, we'll explore the missingness of the _firstdragon_ column. For this, we will first look at the whole original dataset (containing all leagues, not just the tier 1 leagues), and then look at the tier 1 leagues separately. The values in the  _firstdragon_ column are missing for all individual player entries and is not missing for some entries pertaining to teams, so we'll filter out entries in the dataset that are related to individual players. This could mean that the data is NMAR and to figure out how the missingness of _firstdragon_ works, we can see if there is any relation to the _league_ column, as some leagues may not track which team gets the first dragon and other tedious data like so. 
 
 <iframe
-  src="assets/missingness.html"
+  src="assets/all_leagues_missingness_tvd.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
 
-As we see in the graph, the variance of missingness in our permutation tests is very small (around 0 for all tests), but the variance in our observed data is much higher at 0.1875. The _firstdragon_ column's missingness is definitely dependent on the _league_ column, and this would suggest that the LPL does not track which team obtains the first dragon. When it comes to creating the model, we will have to drop LPL data from out dataset when we try to predict _firstdragon_.
+As we see in the graph, the total variation distance (TVD) of missingness in our permutation tests is very small, but the TVD in our observed data is nearly at 1, while the TVD in our permutation tests is near zero for all of the permutations. With a p-value of 0, the _firstdragon_ column's missingness appears to be dependent on the _league_ column. This would suggest that some leagues simply don't track this level of detailed information in their matches, and that the data is MAR.
+
+<iframe
+  src="assets/tier1_leagues_missingness_tvd.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Looking at just the tier 1 leagues, it is clear that there is one league out of the 4 that doesn't track this data. This league is the LPL, and when it comes to creating the predictive model, we will have to drop LPL data from the dataset when we try to predict _firstdragon_. With a p-value of 0, we can conclude that the missingness of the _firstdragon_ column is dependent on the _league_ column, making it MAR.
+
+We might also consider that side selction has to do with the missingness of the _firstdragon_ column, so let's run a permutation test and explore the variance between the _side_ column and the missingness of _firstdragon_.
+
+<iframe
+  src="assets/side_missingness_var.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Based on the graph and a p-value of 1.0, there is no evidence that _side_ has to do with the missingness of _firstdragon_.
 
 ---
 
@@ -86,7 +106,7 @@ We will use hypothesis testing to see if the difference in win rates between tea
 - Alternative: The win rate of teams that pick Ashe is higher than the win rate of teams that ban Ashe.
 - Significance Level: 0.05 or 5%
 
-To test whether the difference is singificant, we can use z-score to measure the standardized difference between the two. If our z-score is large, then we find that picking Ashe leads to a win a signficantly higher amount than banning Ashe. After calculating the total win rate and standard error, we can take the differences in individual win rates and divide by the SE to find the z-score. We can further use _norm.cdf_ to calculate the p-value as well.
+To test whether the difference is significant, we can use z-score to measure the standardized difference between the two. If our z-score is large, then we find that picking Ashe leads to a win a signficantly higher amount than banning Ashe. After calculating the total win rate and standard error, we can take the differences in individual win rates and divide by the SE to find the z-score. We can further use _norm.cdf_ to calculate the p-value as well.
 
 ```py
 # Compute Z-score
