@@ -1,13 +1,10 @@
 
-## An LoL Analysis
-
-by Lucas Sherles
-
+By Lucas Sherles
 ---
 
-### Introduction
+## Introduction
 
-In competitive League of Legends, the part of the game that is make or break is the draft. This is where each team selects and bans 5 champions, going in a snake order. The goal is to pick champions that are strong and synergize well with each other, while also banning champions that are strong against your own.
+In competitive League of Legends, the draft is make or break for a team's success. This is where each team selects and bans 5 champions, going in a snake order. The goal is to pick champions that are strong and synergize well with each other, while also banning champions that are strong against your own.
 
 This project focuses on the the tier 1 leagues (LCK, LEC, LCS, LPL), which are the highest level of League of Legends anywhere around the world, and explores how the draft phase affects the outcome of each game. 
 
@@ -15,7 +12,7 @@ In the first few parts of this project, we will look at at the most picked and b
 
 ---
 
-### Cleaning and EDA
+## Cleaning and EDA
 
 The first step of the cleaning part of this process was to query the dataset for only the top domestic leagues, not including international events. In the data, each entry is assigned to a specific player. Since we aren't interested in player-specific statistics, we can group the data by _gameid_ and _teamname_. This gives us the team statistics for each game, and includes entries for both teams. Specifically, let's figure out which champions were picked or banned the most times. 
 
@@ -67,12 +64,22 @@ Interestingly enough, teams that ban Ashe not only lose more often than they win
 
 ---
 
-### Assessment of Missingness
+## Assessment of Missingness
 
+To prepare for the model, we'll explore the missingness of the _firstdragon_ column. The values in this column are missing for all individual player entries and is not missing for some entries pertaining to teams, so we'll filter out entries in the dataset that are related to individual players. This could mean that the data is NMAR and to figure out how the missingness of _firstdragon_ works, we can see if there is any relation to the _league_ column, as some leagues may not track which team gets the first dragon and other tedious data like so. We find that the LPL accounts for all of the missing data in the _firstdragon_ column, and further testing using permutations proves that there is singificant evidence to suggest that the _firstdragon_ column is missing dependent on the league of the entry.
+
+<iframe
+  src="assets/missingness.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+As we see in the graph, the variance of missingness in our permutation tests is very small (around 0 for all tests), but the variance in our observed data is much higher at 0.1875. The _firstdragon_ column's missingness is definitely dependent on the _league_ column, and this would suggest that the LPL does not track which team obtains the first dragon. When it comes to creating the model, we will have to drop LPL data from out dataset when we try to predict _firstdragon_.
 
 ---
 
-### Hypothesis Testing
+## Hypothesis Testing
 
 We will use hypothesis testing to see if the difference in win rates between teams who ban Ashe versus teams who pick Ashe is significant. Based on the previous graph comparing win rates for when Ashe is picked or banned, we can outline our test is outlined as follows:
 - Null: The win rate of teams that pick Ashe is the same as the win rate of teams that ban Ashe.
@@ -99,13 +106,15 @@ Based on these values and our significance level of 0.05, we recommend that the 
 
 ---
 
-### Framing a Prediction Problem
+## Framing a Prediction Problem
 
-Having previously explored the effect of champions on win rates, it's time to explore a more in-depth model. Given that there are over 160 championsin League of Legends, some champions "spike" or are stronger at certain points in the game. For example, Kayle is considered to be a very strong champion in later stages of the game, as she gains new forms that are stronger as she reaches higher experience levels. Thus, it would not be a surprise to see games with Kayle being longer games, or teams who pick Kayle getting fewer void grubs. In this model, we will look at how the champions selected by a team in a draft affects whether or not the obtain the first dragon in the game. This will be a binary classification problem where we try to predict the _firstdragon_ column based on the champions picked, assigning a binary target variable that is 1 if we predict the team to get the first dragon, and 0 otherwise. To initialize our model, we will use all of the "pick" columns (labeled _pick1_, _pick2_, etc. up to 5). Since the _firstdragon_ column is perfectly balanced (half of the entries are 1s and the other half are 0s), we will use accuracy as our metric over f1-score. To do this, we will use onehot encoding for the champions that are picked, as well as random forests.
+Having previously explored the effect of champions on win rates, it's time to explore a more in-depth model. Given that there are over 160 champions in League of Legends, some champions "spike" or are stronger at certain points in the game. For example, Kayle is considered to be a very strong champion in later stages of the game, as she gains new forms that are stronger as she reaches higher experience levels. Thus, it would not be a surprise to see games with Kayle being longer games, or teams who pick Kayle getting fewer void grubs. In this model, we will look at how the champions selected by a team in a draft affects whether or not the obtain the first dragon in the game. 
+
+This will be a binary classification problem where we try to predict the _firstdragon_ column based on the champions picked, assigning a binary target variable that is 1 if we predict the team to get the first dragon, and 0 otherwise. To initialize our model, we will use all of the "pick" columns (labeled _pick1_, _pick2_, etc., up to 5). Since the draft happens prior to the start of the game, we can be sure that we would have all of the information on the "pick" columns when making our prediction about whether a team will get the first dragon. Since the _firstdragon_ column is perfectly balanced (half of the entries are 1s and the other half are 0s), we will use accuracy as our metric over f1-score. To do this, we will use one hot encoding for the champions that are picked, compounded with sklearn's _Pipeline_ and _RandomForest_.
 
 ---
-### Baseline Model
-As stated previously, we used onehot encoding for the champions picked. All of the pick columns are categorical, having names of champions as the values in these columns. We can use _ColumnTransformer_ to achieve this, and then define the pipeline using the previous onehot encoding as well as a _RandomForest_ in order to bootstrap and analyze the complex patterns that exist in the many combinations of potential champions. Then, we finally train the model, predict it using the test set, and check our accuracy which is as follows:
+## Baseline Model
+As stated previously, we used one hot encoding for the champions picked. All of the pick columns are categorical, having names of champions as the values in these columns. We can use _ColumnTransformer_ to achieve this, and then define the pipeline using the previous one hot encoding as well as a _RandomForest_ in order to bootstrap and analyze the complex patterns that exist in the many combinations of potential champions. Then, we finally train the model, predict it using the test set, and check our accuracy which is as follows:
 
 ```py
 # Check accuracy
@@ -118,12 +127,23 @@ In order for the model to be better than if we were to just predict a 1 for ever
 
 ---
 
-### Final Model
+## Final Model
+We add _side_ to our model because there is evidence that red side gets the first dragon of the game more often. This can be for multiple reasons, such as the team playing on red side having an easier entrance into the dragon pit on the map. Teams that are red side also end the draft with the last pick, which can be used to counter the enemy team's draft. They also can pick both champions going into their bottom lane as their first two picks, while the blue side can only pick one champion initially. This can give red side a stronger bot lane pairing going into the game, and since the dragon pit is on the bottom side of the map, teams with strong bot lanes are usually favored to take the first dragon. This is corroborated by the champion Varus having the highest importance in the model when he is in pick slot 1 (seen in the graph below), as he is a strong bot lane champion in the early game.
+
+Furthermore, we also added _teamname_ into the model. This is an important variable to add because some teams might prioritize obtaining the first dragon of the game more than others. Some teams may have players in the bottom lane who like to play champions that are strong in the early game, which would lead to them obtaining the first dragon of the game more often than not, and vice versa. Let's take a look at the most predictive features of our model.
 
 
+<iframe
+  src="assets/finalmodel.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 ---
 
-### Fairness Analysis
+Adding _side_ to our model certainly helped boost the accuracy of the model, as both values for the column are at the top of the most important features. There are also two teams that appear in the top 20 most important features, Fnatic and Team BDS, which would suggest that these teams likely have more polarizing numbers in terms of how often they are getting the first dragon of the game. Apart from those features, the next most important is "_onehot_pick1_varus_", which is when Varus is picked in the first slot. This would suggest to us that Varus is a storng champion in the early game, allowing for his team to be stronger and have more control when the first dragon spawns at 5:00 into the game. Interestingly as well, when Varus is picked first by red side, the first dragon rate shoots up to a staggering 57.53%. 
 
+## Fairness Analysis
 
+All that is left to do is to embed the confusion matrices, maybe create a graph for the permutation test here, embed that, and explain the findings, then am done.
 ---
