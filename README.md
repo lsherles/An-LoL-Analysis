@@ -1,6 +1,5 @@
 
 By Lucas Sherles
----
 
 ## Introduction
 
