@@ -226,3 +226,5 @@ Fail to reject the null hypothesis.
 ></iframe>
 
 With a p-value of 0.5812 and an observed accuracy difference of just 0.0202, we fail to reject the null hypothesis. This would suggest that there is no statistically significant difference in the model's performance between red side and blue side, and any differences are likely due to random variation as opposed to a bias in the model.
+
+To wrap things up, is it possible to perfectly predict an entire match of competitive League of Legends based on the teams, champions, and sides of each team? No. However, through multiple methods of analysis including permutation tests, one hot encoding, and random forest, we can say it is possible to have a good idea of how a match will go based on these factors. 
