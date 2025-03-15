@@ -1,7 +1,10 @@
+#Is it Possible to Predict How a Top-Tier Competitive League of Legends Match Will Go?
+
 By Lucas Sherles (lsherles@ucsd.edu)
 
-## Introduction
+---
 
+## Introduction
 In competitive League of Legends, the draft is make or break for a team's success. This is where each team selects and bans 5 champions, going in a snake order. The goal is to pick champions that are strong and synergize well with each other, while also banning champions that are strong against your own. This is one of the most important parts of every match, as selecting bad champions or getting "outdrafted" by the other team can make the game extremely difficult for the team to play.
 
 The dataset that this project analyzes is from competitive games played in League of Legends in 2024. The entire dataset contains over 117,000 entries from over 58,000 games, with over 10,000 games from tier 1 leagues. We will examine a subset of columns:
