@@ -27,13 +27,13 @@ The first step of the cleaning part of this process was to query the dataset for
 print(champ_counts_df.head(5).to_markdown(index=False))
 ```
 
-| champion | count    |
-|:---------|---------:|
-| K'Sante  |   764    |
-| Corki    |   560    |
-| Rell     |   558    |
-| Nautilus |   537    |
-| Azir     |   467    |
+| champion   |   count |
+|:-----------|--------:|
+| K'Sante    |     764 |
+| Corki      |     560 |
+| Rell       |     558 |
+| Nautilus   |     537 |
+| Azir       |     467 |
 
 <div style="text-align: center;">
   <iframe
