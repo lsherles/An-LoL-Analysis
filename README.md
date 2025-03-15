@@ -53,13 +53,13 @@ In the data, each entry is assigned to a either specific player or a team. Since
 print(pickban_df.head(5).to_markdown(index=False))
 ```
 
-| champion    |     count    |
-|:------------|-------------:|
-| Ashe        |       1171   |
-| K'Sante     |       1100   |
-| Kalista     |       1096   |
-| Rumble      |       1094   |
-| Nautilus    |        967   |
+| champion   |   count |
+|:-----------|--------:|
+| Ashe       |    1171 |
+| K'Sante    |    1100 |
+| Kalista    |    1096 |
+| Rumble     |    1094 |
+| Nautilus   |     967 |
 
 
 <iframe
@@ -77,13 +77,13 @@ To explore Ashe's effect on how teams perform, we start by filtering the origina
 print(ashe_df.head(5).to_markdown(index=(False)))
 ```
 
-|gameid	            |teamname	            |league	|result	|champion	|status	|ban_slot|
-|:------------------|-----------------------|-------|-------|-----------|-------|-------:|
-|10665-10665_game_1	|Bilibili Gaming	    |LPL	|1	    |Ashe	    |Picked	|NaN     |
-|10665-10665_game_2	|Bilibili Gaming	    |LPL	|0	    |Ashe	    |Banned	|ban2    |
-|10665-10665_game_3	|Top Esports	        |LPL	|0	    |Ashe	    |Banned	|ban2    |
-|10666-10666_game_1	|Royal Never Give Up	|LPL	|0	    |Ashe	    |Banned	|ban3    |
-|10666-10666_game_2	|Royal Never Give Up	|LPL	|1	    |Ashe	    |Banned	|ban1    |
+| gameid             | teamname            | league   |   result | champion   | status   | ban_slot   |
+|:-------------------|:--------------------|:---------|---------:|:-----------|:---------|:-----------|
+| 10665-10665_game_1 | Bilibili Gaming     | LPL      |        1 | Ashe       | Picked   | nan        |
+| 10665-10665_game_2 | Bilibili Gaming     | LPL      |        0 | Ashe       | Banned   | ban2       |
+| 10665-10665_game_3 | Top Esports         | LPL      |        0 | Ashe       | Banned   | ban2       |
+| 10666-10666_game_1 | Royal Never Give Up | LPL      |        0 | Ashe       | Banned   | ban3       |
+| 10666-10666_game_2 | Royal Never Give Up | LPL      |        1 | Ashe       | Banned   | ban1       |
 
 
 <iframe
