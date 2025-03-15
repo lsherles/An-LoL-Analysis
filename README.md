@@ -191,8 +191,8 @@ We also added the hyperfeatures _n estimators_ = 200 and _max depth_ = 20 into t
 
 <iframe
   src="assets/finalmodel.html"
-  width="800"
-  height="600"
+  width="630"
+  height="440"
   frameborder="0"
 ></iframe>
 
