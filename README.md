@@ -38,8 +38,8 @@ print(champ_counts_df.head(5).to_markdown(index=False))
 <div style="text-align: center;">
   <iframe
     src="assets/champcounts.html"
-    width="800"
-    height="600"
+    width="600"
+    height="400"
     frameborder="0"
     style="display: inline-block;"
   ></iframe>
