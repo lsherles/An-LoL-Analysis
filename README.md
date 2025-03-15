@@ -64,8 +64,8 @@ print(pickban_df.head(5).to_markdown(index=False))
 
 <iframe
   src="assets/valcounts.html"
-  width="800"
-  height="600"
+   width="630"
+   height="440"
   frameborder="0"
 ></iframe>
 
@@ -88,8 +88,8 @@ print(ashe_df.head(5).to_markdown(index=(False)))
 
 <iframe
   src="assets/ashe_wr_bc.html"
-  width="800"
-  height="600"
+  width="630"
+  height="440"
   frameborder="0"
 ></iframe>
 
@@ -103,8 +103,8 @@ To prepare for the model, we'll explore the missingness of the _firstdragon_ col
 
 <iframe
   src="assets/all_leagues_missingness_tvd.html"
-  width="800"
-  height="600"
+  width="630"
+  height="440"
   frameborder="0"
 ></iframe>
 
@@ -112,8 +112,8 @@ As we see in the graph, the total variation distance (TVD) of missingness in our
 
 <iframe
   src="assets/tier1_leagues_missingness_tvd.html"
-  width="800"
-  height="600"
+  width="630"
+  height="440"
   frameborder="0"
 ></iframe>
 
@@ -123,8 +123,8 @@ We might also consider that side selction has to do with the missingness of the 
 
 <iframe
   src="assets/side_missingness_var.html"
-  width="800"
-  height="600"
+  width="630"
+  height="440"
   frameborder="0"
 ></iframe>
 
@@ -221,9 +221,9 @@ Fail to reject the null hypothesis.
 ```
 
 <iframe
-  src="assets/finalmodel.html"
-  width="800"
-  height="600"
+  src="assets/perm_acc_hist.html"
+  width="630"
+  height="440"
   frameborder="0"
 ></iframe>
 
