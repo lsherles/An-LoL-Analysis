@@ -2,5 +2,5 @@ remote_theme: pages-themes/slate@v0.2.0
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
 layout: page
-title: Is it Possible to Predict How a Top-Tier Competitive League of Legends Match Will Go?
+title: Is it Possible to Predict a Top-Tier Competitive League of Legends Match?
 description: This is a project for DSC 80 at UCSD, where I will take a look at the top competitive leagues in League of Legends and try to make predictions based on feature analysis.              By Lucas Sherles
