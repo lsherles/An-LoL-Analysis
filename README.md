@@ -41,7 +41,7 @@ print(champ_counts_df.head(5).to_markdown(index=False))
   width="800"
   height="600"
   frameborder="0"
-  style="display:block; margin-top: 0; padding-top: 0;"
+  style="display: block; margin-left: auto; margin-right: auto;"
 ></iframe>
 
 It looks like K'Sante is by far the most played champion, by a margin of over 200 games, which would suggest he's both popular and strong. Let's see how adding the ban frequency of champions will affect our perspective.
