@@ -1,6 +1,6 @@
-#Is it Possible to Predict How a Top-Tier Competitive League of Legends Match Will Go?
+# Is it Possible to Predict How a Top-Tier Competitive League of Legends Match Will Go?
 
-By Lucas Sherles (lsherles@ucsd.edu)
+### By Lucas Sherles (lsherles@ucsd.edu)
 
 ---
 
