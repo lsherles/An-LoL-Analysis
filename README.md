@@ -21,7 +21,7 @@ This project explores how the draft phase affects the outcome of each game, with
 
 ## Cleaning and EDA
 
-The first step of the cleaning part of this process was to query the dataset for only the top domestic leagues, not including international events. From here, we want to figure out who the most played champions are, as that will help us to understand what champions are considered to be strong or popular.
+The first step of the cleaning part of this process was to query the dataset for only the top domestic leagues, not including international events. From here, we want to figure out who the most played champions are, as that will help us understand what champions are considered to be strong or popular.
 
 ```py
 print(champ_counts_df.head(5).to_markdown(index=False))
