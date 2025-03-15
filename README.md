@@ -228,5 +228,3 @@ Fail to reject the null hypothesis.
 ></iframe>
 
 With a p-value of 0.5812 and an observed accuracy difference of just 0.0202, we fail to reject the null hypothesis. This would suggest that there is no statistically significant difference in the model's performance between red side and blue side, and any differences are likely due to random variation as opposed to a bias in the model.
-
----
